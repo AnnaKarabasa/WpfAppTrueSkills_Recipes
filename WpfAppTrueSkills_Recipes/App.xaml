@@ -8,7 +8,11 @@
         <SolidColorBrush x:Key="MainOrange" Color="#fdb249"></SolidColorBrush>
         <SolidColorBrush x:Key="MainPink" Color="#fed7c1"></SolidColorBrush>
         <SolidColorBrush x:Key="MainPurple" Color="#eed4fe"></SolidColorBrush>
-        
-        
+
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource MainOlive}"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="Height" Value="30"></Setter>
+        </Style>
     </Application.Resources>
 </Application>

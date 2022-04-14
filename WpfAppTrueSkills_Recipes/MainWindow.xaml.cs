@@ -24,5 +24,20 @@ namespace WpfAppTrueSkills_Recipes
         {
             InitializeComponent();
         }
+
+        private void BtnDishes_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnIngredients_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnExit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

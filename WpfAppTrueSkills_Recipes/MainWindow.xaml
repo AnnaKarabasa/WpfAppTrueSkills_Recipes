@@ -5,8 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfAppTrueSkills_Recipes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Мои рецепты" Height="700" Width="1200" MinHeight="300" MinWidth="400">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Image Source="/Resources/nyam-nyam.png" Margin="10"/>
+            <Grid Grid.Row="1" Background="{StaticResource MainPink}">
+                <StackPanel>
+                    <Button x:Name="BtnDishes" Click="BtnDishes_Click">Блюда</Button>
+                    <Button x:Name="BtnIngredients" Click="BtnIngredients_Click">Ингредиенты</Button>
+                </StackPanel>
+                <Button x:Name="BtnExit" Click="BtnExit_Click" VerticalAlignment="Bottom">Выход</Button>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
