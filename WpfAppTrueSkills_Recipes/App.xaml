@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:WpfAppTrueSkills_Recipes"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="MainOlive" Color="#d5c847"></SolidColorBrush>
+        <SolidColorBrush x:Key="MainOrange" Color="#fdb249"></SolidColorBrush>
+        <SolidColorBrush x:Key="MainPink" Color="#fed7c1"></SolidColorBrush>
+        <SolidColorBrush x:Key="MainPurple" Color="#eed4fe"></SolidColorBrush>
+        
+        
     </Application.Resources>
 </Application>
