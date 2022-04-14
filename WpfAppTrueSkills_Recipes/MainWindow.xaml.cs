@@ -27,12 +27,12 @@ namespace WpfAppTrueSkills_Recipes
 
         private void BtnDishes_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.Navigate(new Pages.PageListDishes());
         }
 
         private void BtnIngredients_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.Navigate(new Pages.PageListIngredients());
         }
 
         private void BtnExit_Click(object sender, RoutedEventArgs e)

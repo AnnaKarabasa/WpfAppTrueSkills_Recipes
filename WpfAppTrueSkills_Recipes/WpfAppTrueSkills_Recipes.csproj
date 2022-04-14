@@ -77,6 +77,22 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\PageCurrentRecipe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageListDishes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageListIngredients.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageNewIngredient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Category.cs">
@@ -111,6 +127,18 @@
     </Compile>
     <Compile Include="Models\Unit.cs">
       <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageCurrentRecipe.xaml.cs">
+      <DependentUpon>PageCurrentRecipe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageListDishes.xaml.cs">
+      <DependentUpon>PageListDishes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageListIngredients.xaml.cs">
+      <DependentUpon>PageListIngredients.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageNewIngredient.xaml.cs">
+      <DependentUpon>PageNewIngredient.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -151,9 +179,7 @@
   <ItemGroup>
     <Resource Include="Resources\nyam-nyam.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

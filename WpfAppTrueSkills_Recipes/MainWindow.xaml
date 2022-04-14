@@ -27,5 +27,18 @@
                 <Button x:Name="BtnExit" Click="BtnExit_Click" VerticalAlignment="Bottom">Выход</Button>
             </Grid>
         </Grid>
+
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label FontSize="40" Margin="10" FontWeight="SemiBold">Header</Label>
+            <Grid Background="{StaticResource MainOrange}" Height="15" VerticalAlignment="Bottom" Margin="10"></Grid>
+
+            <Frame Grid.Row="1" x:Name="MainFrame" Margin="10" NavigationUIVisibility="Hidden"></Frame>
+        </Grid>
+        
     </Grid>
 </Window>
