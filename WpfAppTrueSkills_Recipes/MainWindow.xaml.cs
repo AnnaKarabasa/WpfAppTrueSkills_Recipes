@@ -25,6 +25,32 @@ namespace WpfAppTrueSkills_Recipes
             InitializeComponent();
 
             MainFrame.Navigate(new Pages.PageListDishes());
+
+
+
+            Models.MyRecipesEntities context = new Models.MyRecipesEntities();
+            var categories = context.Categories.Where(x => x.Name.Length <= 5).OrderByDescending(x => x.Name).Select(x => x.Id + ": " + x.Name).ToList();
+
+            var avgCost = context.Ingredients.Max(x => x.Cost);
+
+            var secondPageIngredients = context.Ingredients.ToList().Skip(10).Take(10).Select(x=> x.Id + ": " + x.Name).ToList();
+
+            var firstCategory = context.Categories.FirstOrDefault();
+
+
+            //Models.Category category = new Models.Category
+            //{
+            //    Id=6,
+            //    Name="Напитки"
+            //};
+            //context.Categories.Add(category);
+            //context.SaveChanges();
+            var category = context.Categories.FirstOrDefault(x => x.Id == 6);
+            //category.Name = "Напиток";
+            //context.SaveChanges();
+
+            context.Categories.Remove(category);
+            context.SaveChanges();
         }
 
         private void BtnDishes_Click(object sender, RoutedEventArgs e)
