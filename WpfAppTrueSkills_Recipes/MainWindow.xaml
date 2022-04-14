@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfAppTrueSkills_Recipes"
         mc:Ignorable="d"
-        Title="Мои рецепты" Height="700" Width="1200" MinHeight="300" MinWidth="400">
-    <Grid>
+        Title="Мои рецепты" Height="700" Width="1200" MinHeight="300" MinWidth="400" Icon="/Resources/nyam-nyam.ico" WindowStartupLocation="CenterScreen">
+<Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -19,6 +19,7 @@
             </Grid.RowDefinitions>
 
             <Image Source="/Resources/nyam-nyam.png" Margin="10"/>
+
             <Grid Grid.Row="1" Background="{StaticResource MainPink}">
                 <StackPanel>
                     <Button x:Name="BtnDishes" Click="BtnDishes_Click">Блюда</Button>
@@ -34,11 +35,11 @@
                 <RowDefinition Height="100"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Label FontSize="40" Margin="10" FontWeight="SemiBold">Header</Label>
+            <Label FontSize="40" Margin="10" FontWeight="SemiBold" Content="{Binding ElementName=MainFrame, Path=Content.Title}"></Label>
             <Grid Background="{StaticResource MainOrange}" Height="15" VerticalAlignment="Bottom" Margin="10"></Grid>
 
             <Frame Grid.Row="1" x:Name="MainFrame" Margin="10" NavigationUIVisibility="Hidden"></Frame>
         </Grid>
-        
+
     </Grid>
 </Window>

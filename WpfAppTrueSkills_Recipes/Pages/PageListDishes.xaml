@@ -6,9 +6,9 @@
       xmlns:local="clr-namespace:WpfAppTrueSkills_Recipes.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="PageListDishes">
+      Title="Список блюд">
 
     <Grid>
-        <Label>БЛЮДА</Label>
+        
     </Grid>
 </Page>

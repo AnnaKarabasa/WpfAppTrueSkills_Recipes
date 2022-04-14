@@ -23,6 +23,8 @@ namespace WpfAppTrueSkills_Recipes
         public MainWindow()
         {
             InitializeComponent();
+
+            MainFrame.Navigate(new Pages.PageListDishes());
         }
 
         private void BtnDishes_Click(object sender, RoutedEventArgs e)
@@ -37,7 +39,7 @@ namespace WpfAppTrueSkills_Recipes
 
         private void BtnExit_Click(object sender, RoutedEventArgs e)
         {
-
+            Close();
         }
     }
 }

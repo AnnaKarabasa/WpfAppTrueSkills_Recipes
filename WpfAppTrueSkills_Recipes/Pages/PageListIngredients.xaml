@@ -6,10 +6,9 @@
       xmlns:local="clr-namespace:WpfAppTrueSkills_Recipes.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="PageListIngredients">
+      Title="Список ингредиентов">
 
     <Grid>
-        <Label>ИНГРЕДИЕНТЫ</Label>
 
     </Grid>
 </Page>
