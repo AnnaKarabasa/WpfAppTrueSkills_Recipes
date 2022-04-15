@@ -20,9 +20,19 @@ namespace WpfAppTrueSkills_Recipes.Pages
     /// </summary>
     public partial class PageListDishes : Page
     {
+        Models.MyRecipesEntities _context = new Models.MyRecipesEntities();
         public PageListDishes()
         {
             InitializeComponent();
+
+            RefreshData();
+        }
+
+        private void RefreshData()
+        {
+            List<Models.Dish> listDishes = _context.Dishes.ToList();
+
+            LViewDishes.ItemsSource = listDishes;
         }
     }
 }

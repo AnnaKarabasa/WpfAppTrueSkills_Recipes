@@ -107,6 +107,7 @@
     <Compile Include="Models\Dish.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DishPartial.cs" />
     <Compile Include="Models\Ingredient.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
