@@ -21,6 +21,7 @@ namespace WpfAppTrueSkills_Recipes.Pages
     public partial class PageListIngredients : Page
     {
         Models.MyRecipesEntities _context = new Models.MyRecipesEntities();
+        int _currentPage = 1, _countInPage = 5, _maxPages;
 
         public PageListIngredients()
         {
@@ -32,6 +33,10 @@ namespace WpfAppTrueSkills_Recipes.Pages
         private void RefreshData()
         {
             List<Models.Ingredient> listIngredients = _context.Ingredients.ToList();
+
+            _maxPages =(int)Math.Ceiling(listIngredients.Count*1.0 / _countInPage);
+            listIngredients = listIngredients.Skip((_currentPage - 1) * _countInPage).Take(_countInPage).ToList();
+
             DGridIngredients.ItemsSource = listIngredients;
 
             LblTotalQuantity.Content = listIngredients.Count + " наименований";
@@ -41,22 +46,26 @@ namespace WpfAppTrueSkills_Recipes.Pages
 
         private void BtnFirstPage_Click(object sender, RoutedEventArgs e)
         {
+            _currentPage = 1;
             RefreshData();
         }
 
         private void BtnPreviousPage_Click(object sender, RoutedEventArgs e)
         {
-
+            _currentPage--;
+            RefreshData();
         }
 
         private void BtnNextPage_Click(object sender, RoutedEventArgs e)
         {
-
+            _currentPage++;
+            RefreshData();
         }
 
         private void BtnLastPage_Click(object sender, RoutedEventArgs e)
         {
-
+            _currentPage = _maxPages;
+            RefreshData();
         }
 
         private void BorderPlus_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
