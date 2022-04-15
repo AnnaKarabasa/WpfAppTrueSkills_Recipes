@@ -17,13 +17,39 @@
         <Label Name="LblTotalQuantity" FontSize="20">Всего наименований</Label>
         <Label Name="LblTotalSum" HorizontalAlignment="Right" FontSize="14" VerticalAlignment="Center">Запасов в холодильнике</Label>
 
-        <DataGrid Name="DGridIngredients" Grid.Row="1" ColumnWidth="*">
+        <DataGrid Name="DGridIngredients" Grid.Row="1" ColumnWidth="*" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Наименование ингредиента"></DataGridTextColumn>
-                <DataGridTextColumn Header="Цена"></DataGridTextColumn>
-                <DataGridTextColumn Header="В наличии"></DataGridTextColumn>
+                <DataGridTextColumn Header="Наименование ингредиента" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Цена">
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding StringFormat="{}{0:N0} руб. за {1} {2}">
+                            <Binding Path="Cost"></Binding>
+                            <Binding Path="CostForCount"></Binding>
+                            <Binding Path="Unit.Name"></Binding>
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="В наличии">
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding StringFormat="{}{1} {0}">
+                            <Binding Path="Unit.Name"></Binding>
+                            <Binding Path="AvailableCount"></Binding>
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
                 <DataGridTemplateColumn Header="Действия">
-                    
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Margin="10,10,0,2">
+                                    <Hyperlink Foreground="Blue" Name="LinkEdit" Click="LinkEdit_Click">Редактировать</Hyperlink>
+                                </TextBlock>
+                                <TextBlock Margin="10,2,0,10">
+                                    <Hyperlink Foreground="Red" Name="LinkDelete" Click="LinkDelete_Click">Удалить</Hyperlink>
+                                </TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>

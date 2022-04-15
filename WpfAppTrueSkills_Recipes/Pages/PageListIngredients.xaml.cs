@@ -20,14 +20,28 @@ namespace WpfAppTrueSkills_Recipes.Pages
     /// </summary>
     public partial class PageListIngredients : Page
     {
+        Models.MyRecipesEntities _context = new Models.MyRecipesEntities();
+
         public PageListIngredients()
         {
             InitializeComponent();
+
+            RefreshData();
+        }
+
+        private void RefreshData()
+        {
+            List<Models.Ingredient> listIngredients = _context.Ingredients.ToList();
+            DGridIngredients.ItemsSource = listIngredients;
+
+            LblTotalQuantity.Content = listIngredients.Count + " наименований";
+            double sum = listIngredients.Sum(x => x.Price * x.AvailableCount);
+            LblTotalSum.Content = $"Запасов в холодильнике на сумму: {sum:N2} руб.";
         }
 
         private void BtnFirstPage_Click(object sender, RoutedEventArgs e)
         {
-
+            RefreshData();
         }
 
         private void BtnPreviousPage_Click(object sender, RoutedEventArgs e)
@@ -46,6 +60,16 @@ namespace WpfAppTrueSkills_Recipes.Pages
         }
 
         private void BorderPlus_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void LinkEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LinkDelete_Click(object sender, RoutedEventArgs e)
         {
 
         }
