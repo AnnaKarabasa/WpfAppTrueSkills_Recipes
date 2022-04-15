@@ -25,6 +25,11 @@ namespace WpfAppTrueSkills_Recipes.Pages
         {
             InitializeComponent();
 
+            List<Models.Category> listCategories = _context.Categories.ToList();
+            listCategories.Insert(0, new Models.Category { Name = "Все категории" });
+            CmbCategory.ItemsSource = listCategories;
+            CmbCategory.SelectedIndex = 0;
+
             RefreshData();
         }
 
@@ -32,7 +37,34 @@ namespace WpfAppTrueSkills_Recipes.Pages
         {
             List<Models.Dish> listDishes = _context.Dishes.ToList();
 
+            // фильтрация по категориям
+            if (CmbCategory.SelectedIndex != 0)
+            {
+                Models.Category selectedCategory = (Models.Category)CmbCategory.SelectedItem;
+                listDishes = listDishes.Where(x => x.CategoryId == selectedCategory.Id).ToList();
+            }
+
+            // поиск по тексту
+            var searchString = TxtSearch.Text;
+            if (!string.IsNullOrWhiteSpace(searchString))
+            {
+                listDishes = listDishes.Where(x => x.Name.ToLower().Contains(searchString.ToLower())).ToList();
+            }
+
+            // сортировка по себестоимости блюда
+            listDishes = listDishes.OrderByDescending(x => x.ServingPrice).ToList();
+
             LViewDishes.ItemsSource = listDishes;
+        }
+
+        private void CmbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void TxtSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            RefreshData();
         }
     }
 }
