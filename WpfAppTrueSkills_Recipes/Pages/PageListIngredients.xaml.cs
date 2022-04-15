@@ -24,5 +24,30 @@ namespace WpfAppTrueSkills_Recipes.Pages
         {
             InitializeComponent();
         }
+
+        private void BtnFirstPage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnPreviousPage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnNextPage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnLastPage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BorderPlus_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

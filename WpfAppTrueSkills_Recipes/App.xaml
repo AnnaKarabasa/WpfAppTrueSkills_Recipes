@@ -9,10 +9,13 @@
         <SolidColorBrush x:Key="MainPink" Color="#fed7c1"></SolidColorBrush>
         <SolidColorBrush x:Key="MainPurple" Color="#eed4fe"></SolidColorBrush>
 
-        <Style TargetType="Button">
+        <Style TargetType="Button" x:Key="BaseOliveButton">
             <Setter Property="Background" Value="{StaticResource MainOlive}"></Setter>
+            <Setter Property="Height" Value="28"></Setter>
+        </Style>
+        
+        <Style TargetType="Button" BasedOn="{StaticResource BaseOliveButton}">
             <Setter Property="Margin" Value="10"></Setter>
-            <Setter Property="Height" Value="30"></Setter>
         </Style>
     </Application.Resources>
 </Application>

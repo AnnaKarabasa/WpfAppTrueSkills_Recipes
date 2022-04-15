@@ -9,6 +9,41 @@
       Title="Список ингредиентов">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Name="LblTotalQuantity" FontSize="20">Всего наименований</Label>
+        <Label Name="LblTotalSum" HorizontalAlignment="Right" FontSize="14" VerticalAlignment="Center">Запасов в холодильнике</Label>
 
+        <DataGrid Name="DGridIngredients" Grid.Row="1" ColumnWidth="*">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Наименование ингредиента"></DataGridTextColumn>
+                <DataGridTextColumn Header="Цена"></DataGridTextColumn>
+                <DataGridTextColumn Header="В наличии"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="Действия">
+                    
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <StackPanel.Resources>
+                <Style TargetType="Button" BasedOn="{StaticResource BaseOliveButton}">
+                    <Setter Property="Width" Value="28"></Setter>
+                    <Setter Property="Margin" Value="3"></Setter>
+                </Style>
+            </StackPanel.Resources>
+            <Button Name="BtnFirstPage" Click="BtnFirstPage_Click" Content="&lt;&lt;"></Button>
+            <Button Name="BtnPreviousPage" Click="BtnPreviousPage_Click" Content="&lt;"></Button>
+            <Label Name="LblPages" VerticalAlignment="Center" FontSize="16" Margin="16,10">4/5</Label>
+            <Button Name="BtnNextPage" Click="BtnNextPage_Click" Content="&gt;"></Button>
+            <Button Name="BtnLastPage" Click="BtnLastPage_Click" Content="&gt;&gt;"></Button>
+        </StackPanel>
+
+        <Border x:Name="BorderPlus" MouseLeftButtonDown="BorderPlus_MouseLeftButtonDown" Padding="0" CornerRadius="15" Grid.Row="2" Width="30" Height="30" Background="{StaticResource MainPurple}" BorderThickness="2" BorderBrush="Black" HorizontalAlignment="Right">
+            <Label FontSize="30" Margin="-2,-14,0,0" FontWeight="Bold">+</Label>
+        </Border>
     </Grid>
 </Page>
