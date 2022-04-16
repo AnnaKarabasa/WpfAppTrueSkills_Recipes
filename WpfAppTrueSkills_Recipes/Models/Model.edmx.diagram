@@ -16,6 +16,8 @@
         <AssociationConnector Association="MyRecipesModel.FK_IngredientOfStage_CookingStage" ManuallyRouted="false" />
         <AssociationConnector Association="MyRecipesModel.FK_Ingredient_Unit" ManuallyRouted="false" />
         <AssociationConnector Association="MyRecipesModel.FK_IngredientOfStage_Ingredient" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MyRecipesModel.Tag" Width="1.5" PointX="7.5" PointY="5.375" />
+        <AssociationConnector Association="MyRecipesModel.TagOfIngredient" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

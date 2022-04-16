@@ -25,12 +25,39 @@ namespace WpfAppTrueSkills_Recipes.Pages
         {
             InitializeComponent();
 
+
+
+            //GenerateRandomTags();
+
+
+            //var categoriesTest=_context.Categories.ToList().Select(x => x.FullName);
+
             List<Models.Category> listCategories = _context.Categories.ToList();
             listCategories.Insert(0, new Models.Category { Name = "Все категории" });
             CmbCategory.ItemsSource = listCategories;
             CmbCategory.SelectedIndex = 0;
 
             RefreshData();
+        }
+
+        private void GenerateRandomTags()
+        {
+            foreach (var ingr in _context.Ingredients.ToList())
+            {
+                Random rand = new Random();
+                for (int i = 2; i <= rand.Next(2,6); i++)
+                {
+                    ingr.Tags.Add(_context.Tags.ToList().ElementAt(rand.Next(0, 5)));
+                    try
+                    {
+                        _context.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
+            }
         }
 
         private void RefreshData()

@@ -31,5 +31,6 @@ namespace WpfAppTrueSkills_Recipes.Models
         public virtual DbSet<Ingredient> Ingredients { get; set; }
         public virtual DbSet<IngredientOfStage> IngredientOfStages { get; set; }
         public virtual DbSet<Unit> Units { get; set; }
+        public virtual DbSet<Tag> Tags { get; set; }
     }
 }

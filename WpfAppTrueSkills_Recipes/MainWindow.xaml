@@ -24,6 +24,7 @@
                 <StackPanel>
                     <Button x:Name="BtnDishes" Click="BtnDishes_Click">Блюда</Button>
                     <Button x:Name="BtnIngredients" Click="BtnIngredients_Click">Ингредиенты</Button>
+                    <Button x:Name="BtnCaptcha" Click="BtnCaptcha_Click">Капча</Button>
                 </StackPanel>
                 <Button x:Name="BtnExit" Click="BtnExit_Click" VerticalAlignment="Bottom">Выход</Button>
             </Grid>

@@ -32,7 +32,7 @@
                         </Grid.RowDefinitions>
                         <!--<Image Grid.RowSpan="2" Source="{Binding PhotoFullPath}" Stretch="UniformToFill"></Image>-->
                         <Image Grid.RowSpan="2" Source="{Binding Photo}" Stretch="UniformToFill"></Image>
-                        <Grid Grid.Row="1" Background="Black" Opacity="0.5"></Grid>
+                        <Grid Grid.Row="1" Background="{Binding Category.BackColor}" Opacity="0.5"></Grid>
                         <TextBlock Grid.Row="1" Foreground="White" FontSize="18" Text="{Binding Name}" TextAlignment="Center" TextWrapping="Wrap" ></TextBlock>
                         <TextBlock Grid.Row="1" Foreground="White" FontSize="14" VerticalAlignment="Bottom" TextAlignment="Center" Margin="0,5" Text="{Binding ServingPrice, StringFormat={}1 порция \= {0:N2} руб.}" FontStyle="Italic"></TextBlock>
                     </Grid>

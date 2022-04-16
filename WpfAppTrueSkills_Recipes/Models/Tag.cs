@@ -12,26 +12,20 @@ namespace WpfAppTrueSkills_Recipes.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Ingredient
+    public partial class Tag
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Ingredient()
+        public Tag()
         {
-            this.IngredientOfStages = new HashSet<IngredientOfStage>();
-            this.Tags = new HashSet<Tag>();
+            this.Ingredients = new HashSet<Ingredient>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public decimal Cost { get; set; }
-        public double CostForCount { get; set; }
-        public int UnitId { get; set; }
-        public double AvailableCount { get; set; }
+        public string BackColor { get; set; }
+        public string FontColor { get; set; }
     
-        public virtual Unit Unit { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<IngredientOfStage> IngredientOfStages { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tag> Tags { get; set; }
+        public virtual ICollection<Ingredient> Ingredients { get; set; }
     }
 }

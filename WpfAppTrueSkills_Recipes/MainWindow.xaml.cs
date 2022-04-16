@@ -27,6 +27,8 @@ namespace WpfAppTrueSkills_Recipes
             MainFrame.Navigate(new Pages.PageListDishes());
 
 
+
+
             //Models.MyRecipesEntities context = new Models.MyRecipesEntities();
             //foreach (var dish in context.Dishes)
             //{
@@ -47,6 +49,11 @@ namespace WpfAppTrueSkills_Recipes
         private void BtnExit_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void BtnCaptcha_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new Pages.PageCaptcha());
         }
     }
 }

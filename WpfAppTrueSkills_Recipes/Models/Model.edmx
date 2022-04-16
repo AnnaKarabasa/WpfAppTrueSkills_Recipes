@@ -4,13 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MyRecipesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MyRecipesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BackColor" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="CookingStage">
           <Key>
@@ -52,6 +53,23 @@
           <Property Name="CookingStageId" Type="int" Nullable="false" />
           <Property Name="IngredientId" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BackColor" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="FontColor" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TagOfIngredient">
+          <Key>
+            <PropertyRef Name="IngredieintId" />
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="IngredieintId" Type="int" Nullable="false" />
+          <Property Name="TagId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Unit">
           <Key>
@@ -124,12 +142,38 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TagOfIngredient_Ingredient">
+          <End Role="Ingredient" Type="Self.Ingredient" Multiplicity="1" />
+          <End Role="TagOfIngredient" Type="Self.TagOfIngredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ingredient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TagOfIngredient">
+              <PropertyRef Name="IngredieintId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TagOfIngredient_Tag">
+          <End Role="Tag" Type="Self.Tag" Multiplicity="1" />
+          <End Role="TagOfIngredient" Type="Self.TagOfIngredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TagOfIngredient">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="MyRecipesModelStoreContainer">
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CookingStage" EntityType="Self.CookingStage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dish" EntityType="Self.Dish" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ingredient" EntityType="Self.Ingredient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IngredientOfStage" EntityType="Self.IngredientOfStage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tag" EntityType="Self.Tag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TagOfIngredient" EntityType="Self.TagOfIngredient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CookingStage_Dish" Association="Self.FK_CookingStage_Dish">
             <End Role="Dish" EntitySet="Dish" />
@@ -151,9 +195,16 @@
             <End Role="Ingredient" EntitySet="Ingredient" />
             <End Role="IngredientOfStage" EntitySet="IngredientOfStage" />
           </AssociationSet>
+          <AssociationSet Name="FK_TagOfIngredient_Ingredient" Association="Self.FK_TagOfIngredient_Ingredient">
+            <End Role="Ingredient" EntitySet="Ingredient" />
+            <End Role="TagOfIngredient" EntitySet="TagOfIngredient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TagOfIngredient_Tag" Association="Self.FK_TagOfIngredient_Tag">
+            <End Role="Tag" EntitySet="Tag" />
+            <End Role="TagOfIngredient" EntitySet="TagOfIngredient" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MyRecipesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -164,6 +215,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Dishes" Relationship="Self.FK_Dish_Category" FromRole="Category" ToRole="Dish" />
+          <Property Name="BackColor" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="CookingStage">
           <Key>
@@ -202,6 +254,7 @@
           <Property Name="AvailableCount" Type="Double" Nullable="false" />
           <NavigationProperty Name="Unit" Relationship="Self.FK_Ingredient_Unit" FromRole="Ingredient" ToRole="Unit" />
           <NavigationProperty Name="IngredientOfStages" Relationship="Self.FK_IngredientOfStage_Ingredient" FromRole="Ingredient" ToRole="IngredientOfStage" />
+          <NavigationProperty Name="Tags" Relationship="MyRecipesModel.TagOfIngredient" FromRole="Ingredient" ToRole="Tag" />
         </EntityType>
         <EntityType Name="IngredientOfStage">
           <Key>
@@ -313,7 +366,26 @@
             <End Role="Ingredient" EntitySet="Ingredients" />
             <End Role="IngredientOfStage" EntitySet="IngredientOfStages" />
           </AssociationSet>
+          <EntitySet Name="Tags" EntityType="MyRecipesModel.Tag" />
+          <AssociationSet Name="TagOfIngredient" Association="MyRecipesModel.TagOfIngredient">
+            <End Role="Ingredient" EntitySet="Ingredients" />
+            <End Role="Tag" EntitySet="Tags" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BackColor" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FontColor" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Ingredients" Relationship="MyRecipesModel.TagOfIngredient" FromRole="Tag" ToRole="Ingredient" />
+        </EntityType>
+        <Association Name="TagOfIngredient">
+          <End Type="MyRecipesModel.Ingredient" Role="Ingredient" Multiplicity="*" />
+          <End Type="MyRecipesModel.Tag" Role="Tag" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -323,6 +395,7 @@
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="MyRecipesModel.Category">
               <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="BackColor" ColumnName="BackColor" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
@@ -380,6 +453,24 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="MyRecipesModel.Tag">
+              <MappingFragment StoreEntitySet="Tag">
+                <ScalarProperty Name="FontColor" ColumnName="FontColor" />
+                <ScalarProperty Name="BackColor" ColumnName="BackColor" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="TagOfIngredient" TypeName="MyRecipesModel.TagOfIngredient" StoreEntitySet="TagOfIngredient">
+            <EndProperty Name="Tag">
+              <ScalarProperty Name="Id" ColumnName="TagId" />
+            </EndProperty>
+            <EndProperty Name="Ingredient">
+              <ScalarProperty Name="Id" ColumnName="IngredieintId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

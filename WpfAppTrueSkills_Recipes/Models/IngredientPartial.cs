@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace WpfAppTrueSkills_Recipes.Models
 {
@@ -17,5 +18,18 @@ namespace WpfAppTrueSkills_Recipes.Models
         //}
 
         public double Price => (double)Cost / CostForCount;
+
+        public SolidColorBrush PriceColor
+        {
+            get
+            {
+                if (Cost <= 60)
+                    return Brushes.LightGreen;
+                else if (Cost <= 200)
+                    return Brushes.LightYellow;
+                else
+                    return Brushes.LightPink;
+            }
+        }
     }
 }
