@@ -25,11 +25,12 @@
         <ListView Grid.Row="2" x:Name="LViewDishes" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Width="250" Height="200">
+                    <Grid Width="250" Height="200" MouseLeftButtonDown="NavigateToSelectedDish">
                         <Grid.RowDefinitions>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
+                        <!--<Image Grid.RowSpan="2" Source="{Binding PhotoFullPath}" Stretch="UniformToFill"></Image>-->
                         <Image Grid.RowSpan="2" Source="{Binding Photo}" Stretch="UniformToFill"></Image>
                         <Grid Grid.Row="1" Background="Black" Opacity="0.5"></Grid>
                         <TextBlock Grid.Row="1" Foreground="White" FontSize="18" Text="{Binding Name}" TextAlignment="Center" TextWrapping="Wrap" ></TextBlock>

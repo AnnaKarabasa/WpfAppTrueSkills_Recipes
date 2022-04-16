@@ -68,6 +68,8 @@
             <Button Name="BtnLastPage" Click="BtnLastPage_Click" Content="&gt;&gt;"></Button>
         </StackPanel>
 
+        <StackPanel x:Name="SPanelPages" Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center"></StackPanel>
+
         <Border x:Name="BorderPlus" MouseLeftButtonDown="BorderPlus_MouseLeftButtonDown" Padding="0" CornerRadius="15" Grid.Row="2" Width="30" Height="30" Background="{StaticResource MainPurple}" BorderThickness="2" BorderBrush="Black" HorizontalAlignment="Right">
             <Label FontSize="30" Margin="-2,-14,0,0" FontWeight="Bold">+</Label>
         </Border>

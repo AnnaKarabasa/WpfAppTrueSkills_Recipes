@@ -26,6 +26,12 @@ namespace WpfAppTrueSkills_Recipes
 
             MainFrame.Navigate(new Pages.PageListDishes());
 
+
+            //Models.MyRecipesEntities context = new Models.MyRecipesEntities();
+            //foreach (var dish in context.Dishes)
+            //{
+            //    System.IO.File.WriteAllBytes(dish.PhotoPath,dish.Photo);
+            //}
         }
 
         private void BtnDishes_Click(object sender, RoutedEventArgs e)

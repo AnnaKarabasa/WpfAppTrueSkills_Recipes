@@ -6,9 +6,17 @@
       xmlns:local="clr-namespace:WpfAppTrueSkills_Recipes.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="PageCurrentRecipe">
+      Title="{Binding Name}">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Button Name="BtnChooseImage" Click="BtnChooseImage_Click" HorizontalAlignment="Center">Загрузить изображение</Button>
+        <Image Grid.Row="1" Source="{Binding Photo}"></Image>
+        <Button Grid.Row="2" Name="BtnSaveImage" Click="BtnSaveImage_Click" HorizontalAlignment="Center">Сохранить картинку в БД</Button>
     </Grid>
 </Page>

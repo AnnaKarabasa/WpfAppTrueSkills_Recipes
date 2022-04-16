@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfAppTrueSkills_Recipes.Models;
 
 namespace WpfAppTrueSkills_Recipes.Pages
 {
@@ -28,17 +29,68 @@ namespace WpfAppTrueSkills_Recipes.Pages
             InitializeComponent();
 
             RefreshData();
+
+
+
         }
 
         private void RefreshData()
         {
             List<Models.Ingredient> listIngredients = _context.Ingredients.ToList();
+            CalculateSummaryData(listIngredients);
 
-            _maxPages =(int)Math.Ceiling(listIngredients.Count*1.0 / _countInPage);
+            _maxPages = (int)Math.Ceiling(listIngredients.Count * 1.0 / _countInPage);
             listIngredients = listIngredients.Skip((_currentPage - 1) * _countInPage).Take(_countInPage).ToList();
+
+            LblPages.Content = $"{_currentPage}/{_maxPages}";
 
             DGridIngredients.ItemsSource = listIngredients;
 
+            ManageButtonsEnable();
+            GeneratePageNumbers();
+        }
+
+        private void GeneratePageNumbers()
+        {
+            SPanelPages.Children.Clear();
+
+            for (int i = 1; i <= _maxPages; i++)
+            {
+                Button btn = new Button();
+                btn.Content = i.ToString();
+                btn.Width = 28;
+                btn.Click += NavigateToSelectedPage;
+                SPanelPages.Children.Add(btn);
+            }
+        }
+
+        private void NavigateToSelectedPage(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            string pageStr = btn.Content.ToString();
+            int page = int.Parse(pageStr);
+            _currentPage = page;
+            RefreshData();
+        }
+
+        private void ManageButtonsEnable()
+        {
+            BtnLastPage.IsEnabled = BtnNextPage.IsEnabled = true;
+            BtnFirstPage.IsEnabled = BtnPreviousPage.IsEnabled = true;
+
+            if (_currentPage == 1)
+            {
+                BtnFirstPage.IsEnabled = BtnPreviousPage.IsEnabled = false;
+            }
+
+            if (_currentPage == _maxPages)
+            {
+                BtnLastPage.IsEnabled = BtnNextPage.IsEnabled = false;
+            }
+        }
+
+        private void CalculateSummaryData(List<Ingredient> listIngredients)
+        {
             LblTotalQuantity.Content = listIngredients.Count + " наименований";
             double sum = listIngredients.Sum(x => x.Price * x.AvailableCount);
             LblTotalSum.Content = $"Запасов в холодильнике на сумму: {sum:N2} руб.";

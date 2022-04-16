@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,38 @@ namespace WpfAppTrueSkills_Recipes.Pages
     /// </summary>
     public partial class PageCurrentRecipe : Page
     {
-        public PageCurrentRecipe()
+        private Models.Dish _selectedDish;
+        private Models.MyRecipesEntities _context;
+
+        public PageCurrentRecipe(Models.Dish selectedDish)
         {
             InitializeComponent();
+
+            _context = new Models.MyRecipesEntities();
+            _selectedDish = _context.Dishes.Find(selectedDish.Id);
+
+            this.DataContext = _selectedDish;
+        }
+
+        private void BtnChooseImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Файлы изображений (*.png;*.jpg)|*.png;*.jpg";
+            if (dialog.ShowDialog() == true)
+            {
+                string fullPath = dialog.FileName;
+                var bytes= System.IO.File.ReadAllBytes(fullPath);
+
+                _selectedDish.Photo = bytes;
+
+                this.DataContext = null;
+                this.DataContext = _selectedDish;
+            }
+        }
+
+        private void BtnSaveImage_Click(object sender, RoutedEventArgs e)
+        {
+            _context.SaveChanges();
         }
     }
 }

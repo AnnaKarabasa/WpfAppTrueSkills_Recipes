@@ -196,6 +196,11 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\big_247394.jpg" />
+    <Resource Include="Resources\big_280021.jpg" />
+    <Resource Include="Resources\big_374665.jpg" />
+    <Resource Include="Resources\big_52594.jpg" />
+    <Resource Include="Resources\big_272575.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

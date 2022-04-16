@@ -18,5 +18,7 @@ namespace WpfAppTrueSkills_Recipes.Models
                 return price;
             }
         }
+
+        public string PhotoFullPath => $"/WpfAppTrueSkills_Recipes;component/Resources/{PhotoPath}";
     }
 }

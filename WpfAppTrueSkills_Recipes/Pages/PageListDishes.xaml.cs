@@ -66,5 +66,13 @@ namespace WpfAppTrueSkills_Recipes.Pages
         {
             RefreshData();
         }
+
+        private void NavigateToSelectedDish(object sender, MouseButtonEventArgs e)
+        {
+            Grid gridDish = sender as Grid;
+            var selectedDish = gridDish.DataContext as Models.Dish;
+
+            NavigationService.Navigate(new PageCurrentRecipe(selectedDish));
+        }
     }
 }
