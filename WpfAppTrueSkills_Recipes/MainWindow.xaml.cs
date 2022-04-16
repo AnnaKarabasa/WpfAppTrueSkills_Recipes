@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,13 +29,22 @@ namespace WpfAppTrueSkills_Recipes
             MainFrame.Navigate(new Pages.PageListDishes());
 
 
-
+            TestAPI();
 
             //Models.MyRecipesEntities context = new Models.MyRecipesEntities();
             //foreach (var dish in context.Dishes)
             //{
             //    System.IO.File.WriteAllBytes(dish.PhotoPath,dish.Photo);
             //}
+        }
+
+        private static void TestAPI()
+        {
+            WebClient webClient = new WebClient();
+            webClient.Encoding = Encoding.UTF8;
+            var ingredientsJson = webClient.DownloadString("http://localhost:4548/api/Ingredients");
+
+            var objects=JsonConvert.DeserializeObject<List<Models.IngredientResponse>>(ingredientsJson);
         }
 
         private void BtnDishes_Click(object sender, RoutedEventArgs e)
